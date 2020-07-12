@@ -1,0 +1,55 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "authmkchallengebd4f429abd4f429aUserPoolId": {
+            "Type": "String",
+            "Default": "authmkchallengebd4f429abd4f429aUserPoolId"
+        },
+        
+        "authmkchallengebd4f429abd4f429aAppClientID": {
+            "Type": "String",
+            "Default": "authmkchallengebd4f429abd4f429aAppClientID"
+        },
+        "authmkchallengebd4f429abd4f429aAppClientIDWeb": {
+            "Type": "String",
+            "Default": "authmkchallengebd4f429abd4f429aAppClientIDWeb"
+        },
+        "AuthRoleArn": {
+            "Type": "String"
+        },
+        "UnauthRoleArn": {
+            "Type": "String"
+        },
+        "env": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+    
+        "mkchallengeGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "mkchallenge",
+              "Precedence" : 1,
+              
+              "UserPoolId" : {
+                "Ref": "authmkchallengebd4f429abd4f429aUserPoolId"
+              } 
+            }
+        },
+        
+    
+    
+    },
+    
+}
