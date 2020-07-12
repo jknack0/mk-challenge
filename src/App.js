@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm'
 import './app.css'
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   return (
     <div className='app-container'>
       {

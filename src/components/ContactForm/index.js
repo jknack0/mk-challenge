@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Notification from '../Notification'
 import {
   FormContainer,
   FormInput,
@@ -11,6 +12,7 @@ const ContactForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [notification, setNotification] = useState(null)
 
   const handleNameChange = (event) => {
     event.preventDefault()
@@ -29,22 +31,39 @@ const ContactForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    const requestBody = {
-      name,
-      email,
-      message
-    }
-    const response = await axios.post('https://or2fcbzcd1.execute-api.us-east-1.amazonaws.com/default/mailForward', requestBody)
-    console.log(response)
 
-    setName('')
-    setEmail('')
-    setMessage('')
+    if(!name || !email || !message){
+      alert('Please complete all fields of the form.')
+    } else {
+      const requestBody = {
+        name,
+        email,
+        message
+      }
+      axios
+        .post('https://or2fcbzcd1.execute-api.us-east-1.amazonaws.com/default/mailForward', requestBody)
+        .then(result => {
+          setNotification(name)
+          setName('')
+          setEmail('')
+          setMessage('')
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
+        })
+        .catch(error => {
+          console.log(error.message)
+        })
+    }
+    
+
+    
   }
 
   return (
     <FormContainer fullWidth={true}>
       <FormHeading variant='h2'>Contact Us</FormHeading>
+      <Notification name={notification}  />
       <FormInput
         required
         type='text'
