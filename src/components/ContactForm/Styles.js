@@ -1,9 +1,9 @@
 import { styled } from '@material-ui/core/styles'
 import { 
-  FormControl,
   TextField,
   Typography,
-  Button
+  Button,
+  FormControl
  } from '@material-ui/core'
 
 export const FormContainer = styled(FormControl)({
@@ -13,7 +13,7 @@ export const FormContainer = styled(FormControl)({
   maxWidth: '500px',
   backgroundColor: 'white',
   padding: '20px',
-  width: '90vw',
+  
   borderRadius: '12px',
 })
 

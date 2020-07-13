@@ -1,7 +1,6 @@
 var AWS = require('aws-sdk');
 var ses = new AWS.SES({region: 'us-east-1'});
  
-var RECEIVER = 'jonathonknack@gmail.com';
 var SENDER = 'jonathonknack@gmail.com';
 
 var response = {

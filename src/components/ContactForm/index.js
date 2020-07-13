@@ -55,9 +55,6 @@ const ContactForm = () => {
           console.log(error.message)
         })
     }
-    
-
-    
   }
 
   return (
